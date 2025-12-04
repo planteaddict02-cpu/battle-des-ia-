@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle des IAs Gratuites - Prédictions Football</title>
+    <title>Battle des IAs Gratuites - 100% Free</title>
     <style>
         * {
             margin: 0;
@@ -126,120 +126,6 @@
             border: 1px solid rgba(76, 175, 80, 0.3);
         }
 
-        .pending-matches {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 152, 0, 0.3);
-        }
-
-        .pending-matches h3 {
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5em;
-            color: #ff9800;
-        }
-
-        .pending-matches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .pending-match-card {
-            background: rgba(255, 152, 0, 0.1);
-            border: 2px solid rgba(255, 152, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s;
-        }
-
-        .pending-match-card:hover {
-            border-color: #ff9800;
-            transform: translateY(-3px);
-        }
-
-        .pending-match-header {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .pending-match-date {
-            font-size: 0.85em;
-            color: #aaa;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .pending-predictions {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-
-        .pending-predictions-title {
-            font-size: 0.9em;
-            color: #aaa;
-            margin-bottom: 10px;
-        }
-
-        .pending-prediction-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            font-size: 0.9em;
-        }
-
-        .check-result-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
-            border: 2px solid #2196f3;
-            color: white;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .check-result-btn:hover {
-            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
-            transform: translateY(-2px);
-        }
-
-        .remove-pending-btn {
-            width: 100%;
-            padding: 10px;
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid #f44336;
-            color: #ff6b6b;
-            border-radius: 8px;
-            font-size: 0.9em;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        .remove-pending-btn:hover {
-            background: rgba(244, 67, 54, 0.3);
-        }
-
-        .leaderboard {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
         .leaderboard h3 {
             margin-bottom: 20px;
             text-align: center;
@@ -324,92 +210,85 @@
             margin-bottom: 20px;
         }
 
-        .league-selector {
+        .match-input-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px;
             margin-bottom: 20px;
         }
 
-        .league-selector select {
-            width: 100%;
+        .match-input-section h3 {
+            margin-bottom: 20px;
+            color: #4caf50;
+        }
+
+        .match-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .team-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .team-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .team-field label {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .team-field input {
             padding: 12px;
             border: 2px solid rgba(76, 175, 80, 0.3);
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             color: white;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .load-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
             font-size: 1.1em;
             font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .load-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .matches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .match-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .match-card:hover {
-            border-color: #4caf50;
-            transform: translateY(-5px);
-        }
-
-        .match-card.selected {
-            border-color: #4caf50;
-            background: rgba(76, 175, 80, 0.1);
-        }
-
-        .match-teams {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-        }
-
-        .team {
-            flex: 1;
             text-align: center;
         }
 
-        .team-logo {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 10px;
-        }
-
-        .team-name {
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-
-        .vs-divider {
-            font-size: 1.5em;
+        .vs-text {
+            font-size: 2em;
             font-weight: bold;
             color: #4caf50;
-            margin: 0 15px;
+        }
+
+        .odds-input-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .odd-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .odd-field label {
+            font-size: 0.9em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        .odd-field input {
+            padding: 12px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
         }
 
         .analyze-btn {
@@ -424,6 +303,10 @@
             cursor: pointer;
             transition: transform 0.2s;
             margin-top: 20px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
         }
 
         .analyze-btn:disabled {
@@ -479,9 +362,21 @@
             border: 2px solid rgba(76, 175, 80, 0.3);
         }
 
-        .prediction-card.winner {
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
+        .prediction-card.correct {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.2);
+            animation: pulse 1s;
+        }
+
+        .prediction-card.incorrect {
+            border-color: #f44336;
+            background: rgba(244, 67, 54, 0.1);
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .ai-header {
@@ -543,52 +438,11 @@
             line-height: 1.6;
         }
 
-        .error-message {
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid #f44336;
-            color: #ff6b6b;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .reset-stats-btn {
-            padding: 10px 20px;
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid #f44336;
-            color: #ff6b6b;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-
-        .reset-stats-btn:hover {
-            background: rgba(244, 67, 54, 0.3);
-        }
-
-        .result-registration {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 2px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .result-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
         .result-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            margin-top: 20px;
         }
 
         .result-btn {
@@ -609,68 +463,18 @@
             box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
         }
 
-        .result-btn:active {
-            transform: translateY(0);
-        }
-
-        .auto-check-btn {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
-            border: 2px solid #2196f3;
-            color: white;
-            border-radius: 10px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: glow 2s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(33, 150, 243, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.8); }
-        }
-
-        .auto-check-btn:hover {
-            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.6);
-        }
-
-        .auto-check-btn:active {
-            transform: translateY(0);
-        }
-
-        .auto-check-btn:disabled {
-            background: #555;
-            cursor: not-allowed;
-            animation: none;
-        }
-
-        .match-status {
+        .error-message {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #ff6b6b;
             padding: 15px;
             border-radius: 10px;
-            margin-top: 15px;
-            font-weight: bold;
+            margin: 10px 0;
+            display: none;
         }
 
-        .match-status.finished {
-            background: rgba(76, 175, 80, 0.2);
-            border: 2px solid #4caf50;
-            color: #4caf50;
-        }
-
-        .match-status.live {
-            background: rgba(255, 152, 0, 0.2);
-            border: 2px solid #ff9800;
-            color: #ff9800;
-        }
-
-        .match-status.not-started {
-            background: rgba(33, 150, 243, 0.2);
-            border: 2px solid #2196f3;
-            color: #2196f3;
+        .error-message.show {
+            display: block;
         }
 
         .success-message {
@@ -702,25 +506,23 @@
             }
         }
 
-        .prediction-card.correct {
-            border-color: #4caf50;
-            background: rgba(76, 175, 80, 0.2);
-            animation: pulse 1s;
+        .reset-stats-btn {
+            padding: 10px 20px;
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #ff6b6b;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-bottom: 20px;
         }
 
-        .prediction-card.incorrect {
-            border-color: #f44336;
-            background: rgba(244, 67, 54, 0.1);
-            opacity: 0.7;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .reset-stats-btn:hover {
+            background: rgba(244, 67, 54, 0.3);
         }
 
         @media (max-width: 768px) {
-            .matches-grid {
+            .team-input-group {
                 grid-template-columns: 1fr;
             }
             
@@ -732,7 +534,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .result-buttons {
+            .odds-input-group {
                 grid-template-columns: 1fr;
             }
         }
@@ -741,9 +543,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 BATTLE DES IAs GRATUITES ⚔️</h1>
-            <p class="subtitle">✅ 100% Gratuit - Aucun Frais</p>
-            <p>Compétition entre les meilleures IAs gratuites pour prédire les matchs</p>
+            <h1>🤖 BATTLE DES IAs 100% GRATUITES ⚔️</h1>
+            <p class="subtitle">✅ Aucune API Payante - 100% Free</p>
+            <p>Compétition entre les meilleures IAs gratuites</p>
         </div>
 
         <div class="leaderboard">
@@ -752,18 +554,10 @@
             <div class="leaderboard-grid" id="leaderboard"></div>
         </div>
 
-        <div class="pending-matches" id="pendingMatchesSection" style="display: none;">
-            <h3>⏳ Matchs en Attente de Résultat</h3>
-            <p style="text-align: center; color: #aaa; margin-bottom: 20px;">
-                Ces matchs ont des prédictions enregistrées en attente de résultat
-            </p>
-            <div class="pending-matches-grid" id="pendingMatchesGrid"></div>
-        </div>
-
         <div class="api-config">
-            <h3>🔑 Configuration des APIs (100% Gratuites)</h3>
+            <h3>🔑 Configuration des IAs Gratuites</h3>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <p style="color: #4caf50; font-size: 0.9em; margin: 0;">✅ Les clés sont sauvegardées automatiquement dans votre navigateur</p>
+                <p style="color: #4caf50; font-size: 0.9em; margin: 0;">✅ Les clés sont sauvegardées automatiquement</p>
                 <button onclick="clearApiKeys()" style="padding: 8px 15px; background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff6b6b; border-radius: 8px; cursor: pointer; font-size: 0.85em;">
                     🗑️ Effacer les clés
                 </button>
@@ -794,20 +588,6 @@
                     <input type="password" id="cohereKey" placeholder="...">
                 </div>
             </div>
-            <div class="api-grid">
-                <div class="api-item">
-                    <label>⚽ API-Football <span class="free-badge">100/jour</span></label>
-                    <input type="text" id="apiFootballKey" placeholder="Clé API-Football">
-                </div>
-                <div class="api-item">
-                    <label>💰 The Odds API (Pour les cotes) <span class="free-badge">500/mois</span></label>
-                    <input type="text" id="oddsApiKey" placeholder="Optionnel - Pour cotes réelles">
-                </div>
-                <div class="api-item">
-                    <label>💵 Mise par Pari <span class="free-badge">Paramètre</span></label>
-                    <input type="number" id="betAmount" value="10" min="1" max="100" placeholder="10">
-                </div>
-            </div>
             <div class="api-help">
                 <strong>📚 CLIQUE ICI POUR OBTENIR TES CLÉS API GRATUITES :</strong><br><br>
                 <div style="display: grid; gap: 10px; margin-top: 10px;">
@@ -823,44 +603,53 @@
                     <a href="https://dashboard.cohere.com/api-keys" target="_blank" style="padding: 12px; background: rgba(76, 175, 80, 0.2); border: 2px solid #4caf50; border-radius: 8px; text-decoration: none; color: #4caf50; font-weight: bold; display: block; text-align: center;">
                         🌐 COHERE - 5M tokens/mois GRATUIT →
                     </a>
-                    <a href="https://dashboard.api-football.com/register" target="_blank" style="padding: 12px; background: rgba(76, 175, 80, 0.2); border: 2px solid #4caf50; border-radius: 8px; text-decoration: none; color: #4caf50; font-weight: bold; display: block; text-align: center;">
-                        ⚽ API-FOOTBALL - 100 req/jour GRATUIT (matchs & résultats) →
-                    </a>
-                    <a href="https://the-odds-api.com/" target="_blank" style="padding: 12px; background: rgba(255, 152, 0, 0.2); border: 2px solid #ff9800; border-radius: 8px; text-decoration: none; color: #ff9800; font-weight: bold; display: block; text-align: center;">
-                        💰 THE ODDS API - 500 req/mois GRATUIT (cotes réelles) →
-                    </a>
-                </div>
-                <div style="margin-top: 15px; padding: 10px; background: rgba(255, 152, 0, 0.1); border-left: 3px solid #ff9800; border-radius: 5px; font-size: 0.9em;">
-                    <strong>ℹ️ Important :</strong> Les cotes proviennent de <strong>The Odds API</strong> (gratuit). Si vous ne configurez pas cette clé, des cotes simulées seront utilisées pour les calculs de gains.
                 </div>
             </div>
         </div>
 
         <div class="main-card">
-            <div class="league-selector">
-                <select id="leagueSelect">
-                    <option value="61">Ligue 1 (France)</option>
-                    <option value="39">Premier League (Angleterre)</option>
-                    <option value="140">La Liga (Espagne)</option>
-                    <option value="78">Bundesliga (Allemagne)</option>
-                    <option value="135">Serie A (Italie)</option>
-                </select>
+            <div class="match-input-section">
+                <h3>⚽ Créer un Match</h3>
+                <div class="match-form">
+                    <div class="team-input-group">
+                        <div class="team-field">
+                            <label>Équipe Domicile</label>
+                            <input type="text" id="team1" placeholder="Ex: Paris SG" value="Paris SG">
+                        </div>
+                        <div class="vs-text">VS</div>
+                        <div class="team-field">
+                            <label>Équipe Extérieur</label>
+                            <input type="text" id="team2" placeholder="Ex: Marseille" value="Marseille">
+                        </div>
+                    </div>
+
+                    <div class="odds-input-group">
+                        <div class="odd-field">
+                            <label>Cote 1 (Domicile)</label>
+                            <input type="number" id="odd1" step="0.01" value="2.00" min="1.01">
+                        </div>
+                        <div class="odd-field">
+                            <label>Cote X (Nul)</label>
+                            <input type="number" id="oddX" step="0.01" value="3.50" min="1.01">
+                        </div>
+                        <div class="odd-field">
+                            <label>Cote 2 (Extérieur)</label>
+                            <input type="number" id="odd2" step="0.01" value="3.00" min="1.01">
+                        </div>
+                    </div>
+
+                    <div class="odd-field">
+                        <label>💵 Mise par Pari</label>
+                        <input type="number" id="betAmount" value="10" min="1" max="100" style="max-width: 200px;">
+                    </div>
+                </div>
             </div>
 
-            <button class="load-btn" onclick="loadMatches()">🔄 Charger les Matchs</button>
-
-            <div class="error-message" id="errorMessage"></div>
-
-            <div class="loading" id="loadingMatches">
-                <div class="spinner"></div>
-                <p>Chargement des matchs...</p>
-            </div>
-
-            <div class="matches-grid" id="matchesGrid"></div>
-
-            <button class="analyze-btn" id="analyzeBtn" onclick="battleAIs()" disabled>
+            <button class="analyze-btn" id="analyzeBtn" onclick="battleAIs()">
                 ⚔️ LANCER LA BATTLE DES IAs !
             </button>
+
+            <div class="error-message" id="errorMessage"></div>
 
             <div class="loading" id="loadingAnalysis">
                 <div class="spinner"></div>
@@ -870,36 +659,22 @@
             <div class="predictions-section" id="predictionsSection">
                 <h2 style="text-align: center; margin-bottom: 20px;">📊 Prédictions des IAs</h2>
                 <div class="predictions-grid" id="predictionsGrid"></div>
-                
-                <div class="result-registration" id="resultRegistration">
-                    <h3 style="text-align: center; margin: 30px 0 20px 0; color: #4caf50;">⚽ Récupération Automatique du Résultat</h3>
-                    <div class="result-form">
-                        <p style="text-align: center; color: #aaa; margin-bottom: 20px;">
-                            Le système vérifie automatiquement si le match est terminé et récupère le score
-                        </p>
-                        
-                        <div class="auto-check-section" style="margin-bottom: 20px;">
-                            <button class="auto-check-btn" onclick="checkMatchResult()">
-                                🔄 Vérifier le Résultat Automatiquement
-                            </button>
-                            <div id="matchStatus" style="text-align: center; margin-top: 15px; color: #aaa;"></div>
-                        </div>
 
-                        <div style="text-align: center; margin: 20px 0;">
-                            <p style="color: #888; font-size: 0.9em;">─── OU enregistre manuellement ───</p>
-                        </div>
-
-                        <div class="result-buttons">
-                            <button class="result-btn" onclick="registerResult('1')">
-                                <span id="team1Name">Équipe 1</span> gagne (1)
-                            </button>
-                            <button class="result-btn" onclick="registerResult('X')">
-                                Match Nul (X)
-                            </button>
-                            <button class="result-btn" onclick="registerResult('2')">
-                                <span id="team2Name">Équipe 2</span> gagne (2)
-                            </button>
-                        </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 25px; margin-top: 30px;">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: #4caf50;">⚽ Enregistrer le Résultat</h3>
+                    <p style="text-align: center; color: #aaa; margin-bottom: 20px;">
+                        Clique sur le résultat final du match
+                    </p>
+                    <div class="result-buttons">
+                        <button class="result-btn" onclick="registerResult('1')">
+                            <span id="team1Name">Équipe 1</span> gagne (1)
+                        </button>
+                        <button class="result-btn" onclick="registerResult('X')">
+                            Match Nul (X)
+                        </button>
+                        <button class="result-btn" onclick="registerResult('2')">
+                            <span id="team2Name">Équipe 2</span> gagne (2)
+                        </button>
                     </div>
                 </div>
             </div>
@@ -907,12 +682,9 @@
     </div>
 
     <script>
-        let selectedMatch = null;
-        let matchesData = [];
         let currentPredictions = [];
         let currentTeams = { team1: '', team2: '' };
-        let currentMatchId = null;
-        let pendingMatches = JSON.parse(localStorage.getItem('pendingMatches')) || [];
+        let currentOdds = { '1': 2.0, 'X': 3.5, '2': 3.0 };
         let aiStats = JSON.parse(localStorage.getItem('aiStats')) || {
             'Gemini (Google)': { wins: 0, total: 0, totalGains: 0, bankroll: 100, predictions: [] },
             'Groq (Llama 3)': { wins: 0, total: 0, totalGains: 0, bankroll: 100, predictions: [] },
@@ -920,7 +692,7 @@
             'Cohere': { wins: 0, total: 0, totalGains: 0, bankroll: 100, predictions: [] }
         };
 
-        // Migration pour les anciennes données sans gains
+        // Migration pour les anciennes données
         Object.keys(aiStats).forEach(aiName => {
             if (typeof aiStats[aiName].totalGains === 'undefined') {
                 aiStats[aiName].totalGains = 0;
@@ -929,24 +701,19 @@
         });
 
         updateLeaderboard();
-        updatePendingMatches();
         loadSavedApiKeys();
 
-        // Sauvegarder les clés API automatiquement
         function saveApiKeys() {
             const apiKeys = {
                 gemini: document.getElementById('geminiKey').value,
                 groq: document.getElementById('groqKey').value,
                 huggingface: document.getElementById('huggingfaceKey').value,
                 cohere: document.getElementById('cohereKey').value,
-                apiFootball: document.getElementById('apiFootballKey').value,
-                oddsApi: document.getElementById('oddsApiKey').value,
                 betAmount: document.getElementById('betAmount').value
             };
             localStorage.setItem('apiKeys', JSON.stringify(apiKeys));
         }
 
-        // Charger les clés API sauvegardées
         function loadSavedApiKeys() {
             const savedKeys = localStorage.getItem('apiKeys');
             if (savedKeys) {
@@ -956,8 +723,6 @@
                     if (apiKeys.groq) document.getElementById('groqKey').value = apiKeys.groq;
                     if (apiKeys.huggingface) document.getElementById('huggingfaceKey').value = apiKeys.huggingface;
                     if (apiKeys.cohere) document.getElementById('cohereKey').value = apiKeys.cohere;
-                    if (apiKeys.apiFootball) document.getElementById('apiFootballKey').value = apiKeys.apiFootball;
-                    if (apiKeys.oddsApi) document.getElementById('oddsApiKey').value = apiKeys.oddsApi;
                     if (apiKeys.betAmount) document.getElementById('betAmount').value = apiKeys.betAmount;
                 } catch (e) {
                     console.error('Erreur chargement clés API:', e);
@@ -965,16 +730,12 @@
             }
         }
 
-        // Ajouter les listeners pour sauvegarder automatiquement
         document.getElementById('geminiKey').addEventListener('input', saveApiKeys);
         document.getElementById('groqKey').addEventListener('input', saveApiKeys);
         document.getElementById('huggingfaceKey').addEventListener('input', saveApiKeys);
         document.getElementById('cohereKey').addEventListener('input', saveApiKeys);
-        document.getElementById('apiFootballKey').addEventListener('input', saveApiKeys);
-        document.getElementById('oddsApiKey').addEventListener('input', saveApiKeys);
         document.getElementById('betAmount').addEventListener('input', saveApiKeys);
 
-        // Effacer les clés API
         function clearApiKeys() {
             if (confirm('Voulez-vous vraiment effacer toutes les clés API sauvegardées ?')) {
                 localStorage.removeItem('apiKeys');
@@ -982,8 +743,6 @@
                 document.getElementById('groqKey').value = '';
                 document.getElementById('huggingfaceKey').value = '';
                 document.getElementById('cohereKey').value = '';
-                document.getElementById('apiFootballKey').value = '';
-                document.getElementById('oddsApiKey').value = '';
                 document.getElementById('betAmount').value = '10';
                 alert('✅ Clés API effacées !');
             }
@@ -1027,184 +786,10 @@
                                 <span class="stat-label">📊 Prédictions</span>
                                 <span class="stat-value">${stats.total}</span>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🎯 Win Rate</span>
-                                <span class="stat-value">${winRate}%</span>
-                            </div>
                         </div>
                     </div>
                 `;
             }).join('');
-        }
-
-        function updatePendingMatches() {
-            const section = document.getElementById('pendingMatchesSection');
-            const grid = document.getElementById('pendingMatchesGrid');
-
-            if (pendingMatches.length === 0) {
-                section.style.display = 'none';
-                return;
-            }
-
-            section.style.display = 'block';
-
-            grid.innerHTML = pendingMatches.map((match, index) => {
-                const matchDate = new Date(match.date);
-                const predictionsHtml = match.predictions.map(pred => 
-                    `<div class="pending-prediction-item">
-                        <span>${pred.ai}</span>
-                        <span style="color: #4caf50; font-weight: bold;">${pred.prediction}</span>
-                    </div>`
-                ).join('');
-
-                return `
-                    <div class="pending-match-card">
-                        <div class="pending-match-header">
-                            ${match.team1} vs ${match.team2}
-                        </div>
-                        <div class="pending-match-date">
-                            📅 ${matchDate.toLocaleDateString('fr-FR', {
-                                day: 'numeric',
-                                month: 'long',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            })}
-                        </div>
-                        <div class="pending-predictions">
-                            <div class="pending-predictions-title">🤖 Prédictions des IAs :</div>
-                            ${predictionsHtml}
-                        </div>
-                        <button class="check-result-btn" onclick="checkPendingMatch(${index})">
-                            🔄 Vérifier le Résultat
-                        </button>
-                        <button class="remove-pending-btn" onclick="removePendingMatch(${index})">
-                            ❌ Retirer de la liste
-                        </button>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        async function checkPendingMatch(index) {
-            const match = pendingMatches[index];
-            const apiKey = document.getElementById('apiFootballKey').value;
-
-            if (!apiKey) {
-                showError('⚠️ Veuillez entrer votre clé API-Football');
-                return;
-            }
-
-            try {
-                const response = await fetch(
-                    `https://v3.football.api-sports.io/fixtures?id=${match.matchId}`,
-                    {
-                        headers: {
-                            'x-rapidapi-host': 'v3.football.api-sports.io',
-                            'x-rapidapi-key': apiKey
-                        }
-                    }
-                );
-
-                const data = await response.json();
-                
-                if (!data.response || data.response.length === 0) {
-                    throw new Error('Match non trouvé');
-                }
-
-                const fixture = data.response[0];
-                const status = fixture.fixture.status.short;
-                const homeScore = fixture.goals.home;
-                const awayScore = fixture.goals.away;
-                
-                if (status === 'FT' || status === 'AET' || status === 'PEN') {
-                    // Match terminé - déterminer le résultat
-                    let result;
-                    if (homeScore > awayScore) {
-                        result = '1';
-                    } else if (homeScore < awayScore) {
-                        result = '2';
-                    } else {
-                        result = 'X';
-                    }
-
-                    // Récupérer la mise et les cotes
-                    const betAmount = parseFloat(document.getElementById('betAmount').value) || 10;
-                    const odds = match.odds || { '1': 2.0, 'X': 3.5, '2': 2.5 };
-
-                    // Mettre à jour les stats des IAs
-                    let winnersText = [];
-                    let gainsInfo = [];
-                    
-                    match.predictions.forEach(pred => {
-                        aiStats[pred.ai].total++;
-                        
-                        const isCorrect = pred.prediction === result;
-                        let gain = 0;
-                        
-                        if (isCorrect) {
-                            gain = (betAmount * odds[pred.prediction]) - betAmount;
-                            aiStats[pred.ai].wins++;
-                            aiStats[pred.ai].bankroll = (aiStats[pred.ai].bankroll || 100) + gain;
-                            aiStats[pred.ai].totalGains = (aiStats[pred.ai].totalGains || 0) + gain;
-                            winnersText.push(pred.ai);
-                            gainsInfo.push(`${pred.ai}: +${gain.toFixed(2)}€`);
-                        } else {
-                            gain = -betAmount;
-                            aiStats[pred.ai].bankroll = (aiStats[pred.ai].bankroll || 100) + gain;
-                            aiStats[pred.ai].totalGains = (aiStats[pred.ai].totalGains || 0) + gain;
-                        }
-
-                        aiStats[pred.ai].predictions.push({
-                            match: `${match.team1} vs ${match.team2}`,
-                            prediction: pred.prediction,
-                            result: result,
-                            correct: isCorrect,
-                            odds: odds[pred.prediction],
-                            betAmount: betAmount,
-                            gain: gain,
-                            date: new Date().toISOString()
-                        });
-                    });
-
-                    // Sauvegarder les stats
-                    localStorage.setItem('aiStats', JSON.stringify(aiStats));
-
-                    // Retirer le match des matchs en attente
-                    pendingMatches.splice(index, 1);
-                    localStorage.setItem('pendingMatches', JSON.stringify(pendingMatches));
-
-                    // Mettre à jour l'affichage
-                    updateLeaderboard();
-                    updatePendingMatches();
-
-                    // Afficher le résultat
-                    alert(`✅ Match terminé !\n\nScore: ${match.team1} ${homeScore} - ${awayScore} ${match.team2}\nRésultat: ${result}\n\n${winnersText.length > 0 ? `🏆 IAs gagnantes: ${winnersText.join(', ')}\n💰 Gains: ${gainsInfo.join(', ')}` : '❌ Aucune IA n\'a trouvé le bon résultat - Toutes perdent ' + betAmount + '€'}`);
-
-                } else if (status === '1H' || status === '2H' || status === 'HT' || status === 'ET' || status === 'BT' || status === 'P' || status === 'LIVE') {
-                    alert(`⚽ Match EN COURS !\n\nScore actuel: ${match.team1} ${homeScore} - ${awayScore} ${match.team2}\n\nReviens plus tard pour le résultat final.`);
-                } else if (status === 'NS' || status === 'TBD') {
-                    const kickoffDate = new Date(fixture.fixture.date);
-                    alert(`⏰ Match pas encore commencé\n\nCoup d'envoi: ${kickoffDate.toLocaleDateString('fr-FR', {
-                        day: 'numeric',
-                        month: 'long',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })}`);
-                } else {
-                    alert(`ℹ️ Statut du match: ${status}\n\nVérifiez plus tard ou enregistrez manuellement le résultat.`);
-                }
-
-            } catch (error) {
-                alert(`❌ Erreur lors de la vérification: ${error.message}`);
-            }
-        }
-
-        function removePendingMatch(index) {
-            if (confirm('Voulez-vous vraiment retirer ce match de la liste ?')) {
-                pendingMatches.splice(index, 1);
-                localStorage.setItem('pendingMatches', JSON.stringify(pendingMatches));
-                updatePendingMatches();
-            }
         }
 
         function resetStats() {
@@ -1227,163 +812,25 @@
             setTimeout(() => errorEl.classList.remove('show'), 5000);
         }
 
-        async function loadMatches() {
-            const apiKey = document.getElementById('apiFootballKey').value;
-            const leagueId = document.getElementById('leagueSelect').value;
+        async function battleAIs() {
+            const team1 = document.getElementById('team1').value.trim();
+            const team2 = document.getElementById('team2').value.trim();
+            const odd1 = parseFloat(document.getElementById('odd1').value);
+            const oddX = parseFloat(document.getElementById('oddX').value);
+            const odd2 = parseFloat(document.getElementById('odd2').value);
 
-            if (!apiKey) {
-                showError('⚠️ Veuillez entrer votre clé API-Football');
+            if (!team1 || !team2) {
+                showError('⚠️ Veuillez entrer les noms des deux équipes');
                 return;
             }
 
-            document.getElementById('loadingMatches').classList.add('show');
-            document.getElementById('matchesGrid').innerHTML = '';
-            matchesData = [];
-
-            try {
-                const today = new Date();
-                const nextWeek = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
-                
-                const response = await fetch(
-                    `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2024&from=${today.toISOString().split('T')[0]}&to=${nextWeek.toISOString().split('T')[0]}`,
-                    {
-                        headers: {
-                            'x-rapidapi-host': 'v3.football.api-sports.io',
-                            'x-rapidapi-key': apiKey
-                        }
-                    }
-                );
-
-                const data = await response.json();
-                
-                if (data.errors && Object.keys(data.errors).length > 0) {
-                    throw new Error('Clé API invalide');
-                }
-
-                if (!data.response || data.response.length === 0) {
-                    showError('Aucun match trouvé');
-                    return;
-                }
-
-                matchesData = data.response.slice(0, 12);
-                
-                // Récupérer les cotes pour chaque match
-                const oddsApiKey = document.getElementById('oddsApiKey').value;
-                if (oddsApiKey) {
-                    try {
-                        const leagueMap = {
-                            '61': 'soccer_france_ligue_one',
-                            '39': 'soccer_epl',
-                            '140': 'soccer_spain_la_liga',
-                            '78': 'soccer_germany_bundesliga',
-                            '135': 'soccer_italy_serie_a'
-                        };
-                        
-                        const oddsLeague = leagueMap[leagueId];
-                        if (oddsLeague) {
-                            const oddsResponse = await fetch(
-                                `https://api.the-odds-api.com/v4/sports/${oddsLeague}/odds/?apiKey=${oddsApiKey}&regions=eu&markets=h2h&oddsFormat=decimal`
-                            );
-                            const oddsData = await oddsResponse.json();
-                            
-                            // Associer les cotes aux matchs
-                            matchesData.forEach(match => {
-                                const matchOdds = oddsData.find(o => 
-                                    o.home_team.toLowerCase().includes(match.teams.home.name.toLowerCase().split(' ')[0]) &&
-                                    o.away_team.toLowerCase().includes(match.teams.away.name.toLowerCase().split(' ')[0])
-                                );
-                                
-                                if (matchOdds && matchOdds.bookmakers && matchOdds.bookmakers.length > 0) {
-                                    const book = matchOdds.bookmakers[0];
-                                    const market = book.markets.find(m => m.key === 'h2h');
-                                    if (market && market.outcomes) {
-                                        match.odds = {
-                                            '1': market.outcomes.find(o => o.name === matchOdds.home_team)?.price || 2.0,
-                                            'X': market.outcomes.find(o => o.name === 'Draw')?.price || 3.5,
-                                            '2': market.outcomes.find(o => o.name === matchOdds.away_team)?.price || 2.0
-                                        };
-                                        match.bookmaker = book.title;
-                                    }
-                                } else {
-                                    // Cotes par défaut
-                                    match.odds = { '1': 2.0, 'X': 3.5, '2': 2.5 };
-                                    match.bookmaker = 'Simulation';
-                                }
-                            });
-                        }
-                    } catch (e) {
-                        console.log('Cotes non disponibles:', e);
-                        // Cotes par défaut pour tous les matchs
-                        matchesData.forEach(match => {
-                            match.odds = { '1': 2.0, 'X': 3.5, '2': 2.5 };
-                            match.bookmaker = 'Simulation';
-                        });
-                    }
-                } else {
-                    // Pas de clé Odds API - utiliser des cotes par défaut
-                    matchesData.forEach(match => {
-                        match.odds = { '1': 2.0, 'X': 3.5, '2': 2.5 };
-                        match.bookmaker = 'Simulation';
-                    });
-                }
-                
-                displayMatches(matchesData);
-
-            } catch (error) {
-                showError('❌ Erreur: ' + error.message);
+            if (odd1 < 1 || oddX < 1 || odd2 < 1) {
+                showError('⚠️ Les cotes doivent être supérieures à 1.00');
+                return;
             }
 
-            document.getElementById('loadingMatches').classList.remove('show');
-        }
-
-        function displayMatches(matches) {
-            const grid = document.getElementById('matchesGrid');
-            grid.innerHTML = matches.map((match, index) => {
-                const matchDate = new Date(match.fixture.date);
-                return `
-                    <div class="match-card" onclick="selectMatch(${index})">
-                        <div style="font-size: 0.85em; color: #aaa; margin-bottom: 10px;">
-                            📅 ${matchDate.toLocaleDateString('fr-FR', { 
-                                weekday: 'short', 
-                                day: 'numeric', 
-                                month: 'short',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            })}
-                        </div>
-                        <div class="match-teams">
-                            <div class="team">
-                                <img src="${match.teams.home.logo}" class="team-logo" alt="${match.teams.home.name}">
-                                <div class="team-name">${match.teams.home.name}</div>
-                            </div>
-                            <div class="vs-divider">VS</div>
-                            <div class="team">
-                                <img src="${match.teams.away.logo}" class="team-logo" alt="${match.teams.away.name}">
-                                <div class="team-name">${match.teams.away.name}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function selectMatch(index) {
-            selectedMatch = index;
-            document.querySelectorAll('.match-card').forEach((card, i) => {
-                card.classList.toggle('selected', i === index);
-            });
-            document.getElementById('analyzeBtn').disabled = false;
-        }
-
-        async function battleAIs() {
-            if (selectedMatch === null) return;
-
-            const match = matchesData[selectedMatch];
-            const team1 = match.teams.home.name;
-            const team2 = match.teams.away.name;
-            
-            // Sauvegarder l'ID du match actuel
-            currentMatchId = match.fixture.id;
+            currentTeams = { team1, team2 };
+            currentOdds = { '1': odd1, 'X': oddX, '2': odd2 };
 
             document.getElementById('loadingAnalysis').classList.add('show');
             document.getElementById('predictionsSection').classList.remove('show');
@@ -1431,31 +878,20 @@
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Tu es un expert en analyse de matchs de football. Prédis le résultat du match ${team1} vs ${team2}.
-
-Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
-{
-  "prediction": "1" ou "X" ou "2",
-  "confidence": 0-100,
-  "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100},
-  "reasoning": "explication en 2 phrases"
-}`
+                                text: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
+{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`
                             }]
                         }]
                     })
                 });
-
                 const data = await response.json();
                 const content = data.candidates[0].content.parts[0].text;
                 return JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
             } catch (error) {
-                console.error('Gemini error:', error);
                 return generateFallbackPrediction();
             }
         }
@@ -1473,23 +909,16 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                         messages: [{
                             role: 'user',
                             content: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
-{
-  "prediction": "1"/"X"/"2",
-  "confidence": 0-100,
-  "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100},
-  "reasoning": "2 phrases"
-}`
+{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`
                         }],
                         temperature: 0.7,
                         max_tokens: 300
                     })
                 });
-
                 const data = await response.json();
                 const content = data.choices[0].message.content;
                 return JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
             } catch (error) {
-                console.error('Groq error:', error);
                 return generateFallbackPrediction();
             }
         }
@@ -1503,29 +932,17 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        inputs: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
-{
-  "prediction": "1"/"X"/"2",
-  "confidence": 0-100,
-  "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100},
-  "reasoning": "2 phrases"
-}`,
-                        parameters: {
-                            max_new_tokens: 300,
-                            temperature: 0.7
-                        }
+                        inputs: `Expert football: prédis ${team1} vs ${team2}. JSON:
+{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`,
+                        parameters: { max_new_tokens: 300, temperature: 0.7 }
                     })
                 });
-
                 const data = await response.json();
                 const content = data[0].generated_text;
                 const jsonMatch = content.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    return JSON.parse(jsonMatch[0]);
-                }
+                if (jsonMatch) return JSON.parse(jsonMatch[0]);
                 return generateFallbackPrediction();
             } catch (error) {
-                console.error('HuggingFace error:', error);
                 return generateFallbackPrediction();
             }
         }
@@ -1540,27 +957,18 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                     },
                     body: JSON.stringify({
                         model: 'command',
-                        prompt: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
-{
-  "prediction": "1"/"X"/"2",
-  "confidence": 0-100,
-  "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100},
-  "reasoning": "2 phrases"
-}`,
+                        prompt: `Expert football: prédis ${team1} vs ${team2}. JSON:
+{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`,
                         max_tokens: 300,
                         temperature: 0.7
                     })
                 });
-
                 const data = await response.json();
                 const content = data.generations[0].text;
                 const jsonMatch = content.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    return JSON.parse(jsonMatch[0]);
-                }
+                if (jsonMatch) return JSON.parse(jsonMatch[0]);
                 return generateFallbackPrediction();
             } catch (error) {
-                console.error('Cohere error:', error);
                 return generateFallbackPrediction();
             }
         }
@@ -1588,52 +996,12 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
 
         function displayPredictions(predictions, team1, team2) {
             const grid = document.getElementById('predictionsGrid');
-            
-            // Sauvegarder les prédictions actuelles
             currentPredictions = predictions;
-            currentTeams = { team1, team2 };
             
-            // Récupérer les cotes du match
-            const match = matchesData[selectedMatch];
-            const odds = match.odds || { '1': 2.0, 'X': 3.5, '2': 2.5 };
-            
-            // Sauvegarder dans les matchs en attente
-            const existingIndex = pendingMatches.findIndex(m => m.matchId === currentMatchId);
-            if (existingIndex === -1) {
-                // Nouveau match
-                pendingMatches.push({
-                    matchId: currentMatchId,
-                    team1: team1,
-                    team2: team2,
-                    date: matchesData[selectedMatch].fixture.date,
-                    odds: odds,
-                    predictions: predictions.map(p => ({
-                        ai: p.ai,
-                        prediction: p.prediction,
-                        confidence: p.confidence
-                    })),
-                    timestamp: new Date().toISOString()
-                });
-            } else {
-                // Mettre à jour un match existant
-                pendingMatches[existingIndex] = {
-                    ...pendingMatches[existingIndex],
-                    odds: odds,
-                    predictions: predictions.map(p => ({
-                        ai: p.ai,
-                        prediction: p.prediction,
-                        confidence: p.confidence
-                    })),
-                    timestamp: new Date().toISOString()
-                };
-            }
-            
-            localStorage.setItem('pendingMatches', JSON.stringify(pendingMatches));
-            updatePendingMatches();
-            
-            // Mettre à jour les noms dans les boutons
             document.getElementById('team1Name').textContent = team1;
             document.getElementById('team2Name').textContent = team2;
+            
+            const betAmount = parseFloat(document.getElementById('betAmount').value) || 10;
             
             grid.innerHTML = predictions.map(pred => {
                 const resultText = pred.prediction === '1' ? team1 : 
@@ -1642,8 +1010,7 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                 const confidenceClass = pred.confidence > 70 ? 'confidence-high' : 
                                         pred.confidence > 50 ? 'confidence-medium' : 'confidence-low';
                 
-                const potentialOdds = odds[pred.prediction];
-                const betAmount = parseFloat(document.getElementById('betAmount').value) || 10;
+                const potentialOdds = currentOdds[pred.prediction];
                 const potentialWin = (betAmount * potentialOdds).toFixed(2);
                 const potentialProfit = (potentialWin - betAmount).toFixed(2);
                 
@@ -1694,31 +1061,23 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                 return;
             }
 
-            // Créer le message de succès
             const resultText = result === '1' ? currentTeams.team1 : 
                               result === 'X' ? 'Match Nul' : 
                               currentTeams.team2;
             
-            // Récupérer les cotes
-            const match = matchesData[selectedMatch];
-            const odds = match.odds || { '1': 2.0, 'X': 3.5, '2': 2.5 };
             const betAmount = parseFloat(document.getElementById('betAmount').value) || 10;
             
-            // Mettre à jour les stats
             let winnersText = [];
             let gainsInfo = [];
             
             currentPredictions.forEach(pred => {
-                // Incrémenter le total
                 aiStats[pred.ai].total++;
                 
-                // Vérifier si la prédiction est correcte
                 const isCorrect = pred.prediction === result;
-                
-                // Calculer les gains
                 let gain = 0;
+                
                 if (isCorrect) {
-                    gain = (betAmount * odds[pred.prediction]) - betAmount;
+                    gain = (betAmount * currentOdds[pred.prediction]) - betAmount;
                     aiStats[pred.ai].wins++;
                     aiStats[pred.ai].bankroll = (aiStats[pred.ai].bankroll || 100) + gain;
                     aiStats[pred.ai].totalGains = (aiStats[pred.ai].totalGains || 0) + gain;
@@ -1730,12 +1089,10 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                     aiStats[pred.ai].totalGains = (aiStats[pred.ai].totalGains || 0) + gain;
                 }
                 
-                // Mettre à jour les cartes visuellement
                 const card = document.querySelector(`[data-ai="${pred.ai}"]`);
                 if (card) {
                     if (isCorrect) {
                         card.classList.add('correct');
-                        // Ajouter badge de gain
                         const header = card.querySelector('.ai-header');
                         const gainBadge = document.createElement('div');
                         gainBadge.className = 'confidence-badge confidence-high';
@@ -1743,7 +1100,6 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                         header.appendChild(gainBadge);
                     } else {
                         card.classList.add('incorrect');
-                        // Ajouter badge de perte
                         const header = card.querySelector('.ai-header');
                         const lossBadge = document.createElement('div');
                         lossBadge.className = 'confidence-badge';
@@ -1753,34 +1109,21 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                     }
                 }
                 
-                // Sauvegarder dans l'historique
                 aiStats[pred.ai].predictions.push({
                     match: `${currentTeams.team1} vs ${currentTeams.team2}`,
                     prediction: pred.prediction,
                     result: result,
                     correct: isCorrect,
-                    odds: odds[pred.prediction],
+                    odds: currentOdds[pred.prediction],
                     betAmount: betAmount,
                     gain: gain,
                     date: new Date().toISOString()
                 });
             });
 
-            // Sauvegarder dans localStorage
             localStorage.setItem('aiStats', JSON.stringify(aiStats));
-
-            // Retirer le match des matchs en attente
-            const pendingIndex = pendingMatches.findIndex(m => m.matchId === currentMatchId);
-            if (pendingIndex !== -1) {
-                pendingMatches.splice(pendingIndex, 1);
-                localStorage.setItem('pendingMatches', JSON.stringify(pendingMatches));
-                updatePendingMatches();
-            }
-
-            // Mettre à jour le leaderboard
             updateLeaderboard();
 
-            // Afficher le message de succès
             const successMsg = document.createElement('div');
             successMsg.className = 'success-message show';
             successMsg.innerHTML = `
@@ -1791,140 +1134,20 @@ Réponds UNIQUEMENT en JSON (sans markdown, sans explication):
                     '❌ Aucune IA n\'a trouvé le bon résultat - Toutes perdent ' + betAmount + '€'}
             `;
             
-            const resultSection = document.getElementById('resultRegistration');
-            resultSection.insertBefore(successMsg, resultSection.firstChild);
+            document.getElementById('predictionsSection').insertBefore(successMsg, document.getElementById('predictionsSection').firstChild);
 
-            // Cacher les boutons après enregistrement
             const buttons = document.querySelector('.result-buttons');
             buttons.style.display = 'none';
 
-            // Faire défiler vers le message
-            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Réinitialiser après 5 secondes
             setTimeout(() => {
                 successMsg.remove();
                 buttons.style.display = 'grid';
+                document.querySelectorAll('.prediction-card').forEach(card => {
+                    card.classList.remove('correct', 'incorrect');
+                    const badges = card.querySelectorAll('.confidence-badge');
+                    if (badges.length > 1) badges[badges.length - 1].remove();
+                });
             }, 5000);
-        }
-
-        async function checkMatchResult() {
-            if (!currentMatchId) {
-                alert('Aucun match sélectionné');
-                return;
-            }
-
-            const apiKey = document.getElementById('apiFootballKey').value;
-            if (!apiKey) {
-                showError('⚠️ Veuillez entrer votre clé API-Football');
-                return;
-            }
-
-            const statusDiv = document.getElementById('matchStatus');
-            const btn = document.querySelector('.auto-check-btn');
-            
-            btn.disabled = true;
-            btn.textContent = '🔄 Vérification en cours...';
-            statusDiv.innerHTML = '<div class="spinner" style="width: 30px; height: 30px; margin: 10px auto;"></div>';
-
-            try {
-                const response = await fetch(
-                    `https://v3.football.api-sports.io/fixtures?id=${currentMatchId}`,
-                    {
-                        headers: {
-                            'x-rapidapi-host': 'v3.football.api-sports.io',
-                            'x-rapidapi-key': apiKey
-                        }
-                    }
-                );
-
-                const data = await response.json();
-                
-                if (!data.response || data.response.length === 0) {
-                    throw new Error('Match non trouvé');
-                }
-
-                const fixture = data.response[0];
-                const status = fixture.fixture.status.short;
-                const homeScore = fixture.goals.home;
-                const awayScore = fixture.goals.away;
-                
-                // Vérifier le statut du match
-                if (status === 'FT' || status === 'AET' || status === 'PEN') {
-                    // Match terminé
-                    let result;
-                    if (homeScore > awayScore) {
-                        result = '1';
-                    } else if (homeScore < awayScore) {
-                        result = '2';
-                    } else {
-                        result = 'X';
-                    }
-
-                    statusDiv.innerHTML = `
-                        <div class="match-status finished">
-                            ✅ Match Terminé !<br>
-                            Score: ${currentTeams.team1} ${homeScore} - ${awayScore} ${currentTeams.team2}<br>
-                            Résultat: ${result === '1' ? currentTeams.team1 + ' gagne' : result === 'X' ? 'Match Nul' : currentTeams.team2 + ' gagne'}
-                        </div>
-                    `;
-
-                    // Enregistrer automatiquement le résultat
-                    setTimeout(() => {
-                        registerResult(result);
-                    }, 2000);
-
-                } else if (status === '1H' || status === '2H' || status === 'HT' || status === 'ET' || status === 'BT' || status === 'P' || status === 'LIVE') {
-                    // Match en cours
-                    statusDiv.innerHTML = `
-                        <div class="match-status live">
-                            ⚽ Match EN COURS !<br>
-                            Score actuel: ${currentTeams.team1} ${homeScore} - ${awayScore} ${currentTeams.team2}<br>
-                            Reviens quand le match sera terminé
-                        </div>
-                    `;
-                } else if (status === 'NS' || status === 'TBD') {
-                    // Match pas encore commencé
-                    const kickoffDate = new Date(fixture.fixture.date);
-                    statusDiv.innerHTML = `
-                        <div class="match-status not-started">
-                            ⏰ Match pas encore commencé<br>
-                            Coup d'envoi: ${kickoffDate.toLocaleDateString('fr-FR', {
-                                day: 'numeric',
-                                month: 'long',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            })}
-                        </div>
-                    `;
-                } else if (status === 'PST' || status === 'CANC' || status === 'ABD') {
-                    // Match reporté/annulé
-                    statusDiv.innerHTML = `
-                        <div class="match-status" style="background: rgba(244, 67, 54, 0.2); border-color: #f44336; color: #ff6b6b;">
-                            ❌ Match ${status === 'PST' ? 'Reporté' : status === 'CANC' ? 'Annulé' : 'Abandonné'}<br>
-                            Impossible de récupérer le résultat
-                        </div>
-                    `;
-                } else {
-                    statusDiv.innerHTML = `
-                        <div class="match-status">
-                            ℹ️ Statut: ${status}<br>
-                            Vérifiez manuellement ou réessayez plus tard
-                        </div>
-                    `;
-                }
-
-            } catch (error) {
-                statusDiv.innerHTML = `
-                    <div class="match-status" style="background: rgba(244, 67, 54, 0.2); border-color: #f44336; color: #ff6b6b;">
-                        ❌ Erreur: ${error.message}<br>
-                        Réessayez ou enregistrez manuellement
-                    </div>
-                `;
-            }
-
-            btn.disabled = false;
-            btn.textContent = '🔄 Vérifier le Résultat Automatiquement';
         }
     </script>
 </body>
