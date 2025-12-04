@@ -762,6 +762,12 @@
 
         <div class="api-config">
             <h3>🔑 Configuration des APIs (100% Gratuites)</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <p style="color: #4caf50; font-size: 0.9em; margin: 0;">✅ Les clés sont sauvegardées automatiquement dans votre navigateur</p>
+                <button onclick="clearApiKeys()" style="padding: 8px 15px; background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff6b6b; border-radius: 8px; cursor: pointer; font-size: 0.85em;">
+                    🗑️ Effacer les clés
+                </button>
+            </div>
             <div class="api-grid">
                 <div class="api-item">
                     <label>
@@ -924,6 +930,64 @@
 
         updateLeaderboard();
         updatePendingMatches();
+        loadSavedApiKeys();
+
+        // Sauvegarder les clés API automatiquement
+        function saveApiKeys() {
+            const apiKeys = {
+                gemini: document.getElementById('geminiKey').value,
+                groq: document.getElementById('groqKey').value,
+                huggingface: document.getElementById('huggingfaceKey').value,
+                cohere: document.getElementById('cohereKey').value,
+                apiFootball: document.getElementById('apiFootballKey').value,
+                oddsApi: document.getElementById('oddsApiKey').value,
+                betAmount: document.getElementById('betAmount').value
+            };
+            localStorage.setItem('apiKeys', JSON.stringify(apiKeys));
+        }
+
+        // Charger les clés API sauvegardées
+        function loadSavedApiKeys() {
+            const savedKeys = localStorage.getItem('apiKeys');
+            if (savedKeys) {
+                try {
+                    const apiKeys = JSON.parse(savedKeys);
+                    if (apiKeys.gemini) document.getElementById('geminiKey').value = apiKeys.gemini;
+                    if (apiKeys.groq) document.getElementById('groqKey').value = apiKeys.groq;
+                    if (apiKeys.huggingface) document.getElementById('huggingfaceKey').value = apiKeys.huggingface;
+                    if (apiKeys.cohere) document.getElementById('cohereKey').value = apiKeys.cohere;
+                    if (apiKeys.apiFootball) document.getElementById('apiFootballKey').value = apiKeys.apiFootball;
+                    if (apiKeys.oddsApi) document.getElementById('oddsApiKey').value = apiKeys.oddsApi;
+                    if (apiKeys.betAmount) document.getElementById('betAmount').value = apiKeys.betAmount;
+                } catch (e) {
+                    console.error('Erreur chargement clés API:', e);
+                }
+            }
+        }
+
+        // Ajouter les listeners pour sauvegarder automatiquement
+        document.getElementById('geminiKey').addEventListener('input', saveApiKeys);
+        document.getElementById('groqKey').addEventListener('input', saveApiKeys);
+        document.getElementById('huggingfaceKey').addEventListener('input', saveApiKeys);
+        document.getElementById('cohereKey').addEventListener('input', saveApiKeys);
+        document.getElementById('apiFootballKey').addEventListener('input', saveApiKeys);
+        document.getElementById('oddsApiKey').addEventListener('input', saveApiKeys);
+        document.getElementById('betAmount').addEventListener('input', saveApiKeys);
+
+        // Effacer les clés API
+        function clearApiKeys() {
+            if (confirm('Voulez-vous vraiment effacer toutes les clés API sauvegardées ?')) {
+                localStorage.removeItem('apiKeys');
+                document.getElementById('geminiKey').value = '';
+                document.getElementById('groqKey').value = '';
+                document.getElementById('huggingfaceKey').value = '';
+                document.getElementById('cohereKey').value = '';
+                document.getElementById('apiFootballKey').value = '';
+                document.getElementById('oddsApiKey').value = '';
+                document.getElementById('betAmount').value = '10';
+                alert('✅ Clés API effacées !');
+            }
+        }
 
         function updateLeaderboard() {
             const leaderboard = document.getElementById('leaderboard');
