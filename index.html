@@ -492,7 +492,7 @@
         <!-- Leaderboard -->
         <div class="leaderboard">
             <h3>🏆 Classement des IAs</h3>
-            <button class="reset-stats-btn" onclick="resetStats()">🔄 Réinitialiser</button>
+            <button class="reset-stats-btn" onclick="resetStats()">🔄 Réinitialiser Stats</button>
             <div class="leaderboard-grid" id="leaderboard"></div>
         </div>
 
@@ -754,6 +754,23 @@
             document.getElementById('analyzeBtn').disabled = false;
         }
 
+        function forceNewAnalysis() {
+            if (!confirm('⚠️ Cela va EFFACER les prédictions actuelles et demander une NOUVELLE analyse aux IAs. Confirmer ?')) {
+                return;
+            }
+            
+            // Vider le cache PERMANENT
+            const team1 = currentTeams.team1;
+            const team2 = currentTeams.team2;
+            localStorage.removeItem(`prediction_gemini_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`);
+            localStorage.removeItem(`prediction_groq_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`);
+            
+            console.log('🗑️ Cache vidé - Nouvelle analyse forcée');
+            
+            // Relancer
+            battleAIs();
+        }
+
         function updateLeaderboard() {
             const leaderboard = document.getElementById('leaderboard');
             const sorted = Object.entries(aiStats).sort((a, b) => {
@@ -808,6 +825,7 @@
                 };
                 localStorage.setItem('aiStats', JSON.stringify(aiStats));
                 updateLeaderboard();
+                alert('✅ Stats réinitialisées !');
             }
         }
 
@@ -835,11 +853,13 @@
 
             if (geminiKey) {
                 const pred = await callGemini(geminiKey, team1, team2);
+                pred.fromCache = localStorage.getItem(`prediction_gemini_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`) !== null;
                 predictions.push({ ai: 'Gemini (Google)', ...pred });
             }
 
             if (groqKey) {
                 const pred = await callGroq(groqKey, team1, team2);
+                pred.fromCache = localStorage.getItem(`prediction_groq_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`) !== null;
                 predictions.push({ ai: 'Groq (Llama 3)', ...pred });
             }
 
@@ -856,6 +876,16 @@
         }
 
         async function callGemini(apiKey, team1, team2) {
+            // Cache PERMANENT - une fois analysé = toujours pareil
+            const cacheKey = `prediction_gemini_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`;
+            const cached = localStorage.getItem(cacheKey);
+            
+            if (cached) {
+                console.log('✅ Gemini: Prédiction en cache');
+                return JSON.parse(cached);
+            }
+
+            console.log('🔄 Gemini: Nouvelle analyse...');
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
                     method: 'POST',
@@ -863,21 +893,51 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
-{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`
+                                text: `Tu es un expert football. Analyse ${team1} (domicile) vs ${team2} (extérieur).
+Cotes bookmaker: 1=${currentOdds['1']}, X=${currentOdds['X']}, 2=${currentOdds['2']}
+
+Réponds UNIQUEMENT en JSON (pas de texte avant/après):
+{
+  "prediction": "1" ou "X" ou "2",
+  "confidence": nombre entre 50 et 95,
+  "probabilities": {"1": X, "X": Y, "2": Z},
+  "reasoning": "Analyse en 2-3 phrases max"
+}`
                             }]
-                        }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.1,
+                            topP: 0.8,
+                            topK: 10
+                        }
                     })
                 });
                 const data = await response.json();
                 const content = data.candidates[0].content.parts[0].text;
-                return JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
+                const result = JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
+                
+                // Sauvegarder DÉFINITIVEMENT
+                localStorage.setItem(cacheKey, JSON.stringify(result));
+                console.log('💾 Gemini: Prédiction sauvegardée');
+                
+                return result;
             } catch (error) {
+                console.error('❌ Gemini error:', error);
                 return generateFallbackPrediction();
             }
         }
 
         async function callGroq(apiKey, team1, team2) {
+            // Cache PERMANENT - une fois analysé = toujours pareil
+            const cacheKey = `prediction_groq_${team1}_${team2}_${currentOdds['1']}_${currentOdds['X']}_${currentOdds['2']}`;
+            const cached = localStorage.getItem(cacheKey);
+            
+            if (cached) {
+                console.log('✅ Groq: Prédiction en cache');
+                return JSON.parse(cached);
+            }
+
+            console.log('🔄 Groq: Nouvelle analyse...');
             try {
                 const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                     method: 'POST',
@@ -889,17 +949,33 @@
                         model: 'llama-3.1-70b-versatile',
                         messages: [{
                             role: 'user',
-                            content: `Expert football: prédis ${team1} vs ${team2}. JSON uniquement:
-{"prediction": "1"/"X"/"2", "confidence": 0-100, "probabilities": {"1": 0-100, "X": 0-100, "2": 0-100}, "reasoning": "2 phrases"}`
+                            content: `Tu es un expert football. Analyse ${team1} (domicile) vs ${team2} (extérieur).
+Cotes bookmaker: 1=${currentOdds['1']}, X=${currentOdds['X']}, 2=${currentOdds['2']}
+
+Réponds UNIQUEMENT en JSON (pas de texte avant/après):
+{
+  "prediction": "1" ou "X" ou "2",
+  "confidence": nombre entre 50 et 95,
+  "probabilities": {"1": X, "X": Y, "2": Z},
+  "reasoning": "Analyse en 2-3 phrases max"
+}`
                         }],
-                        temperature: 0.7,
-                        max_tokens: 300
+                        temperature: 0.1,
+                        max_tokens: 300,
+                        seed: 12345
                     })
                 });
                 const data = await response.json();
                 const content = data.choices[0].message.content;
-                return JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
+                const result = JSON.parse(content.replace(/```json\n?|\n?```/g, ''));
+                
+                // Sauvegarder DÉFINITIVEMENT
+                localStorage.setItem(cacheKey, JSON.stringify(result));
+                console.log('💾 Groq: Prédiction sauvegardée');
+                
+                return result;
             } catch (error) {
+                console.error('❌ Groq error:', error);
                 return generateFallbackPrediction();
             }
         }
@@ -941,6 +1017,10 @@
                 const confidenceClass = pred.confidence > 70 ? 'confidence-high' : 
                                         pred.confidence > 50 ? 'confidence-medium' : 'confidence-low';
                 
+                const cacheBadge = pred.fromCache ? 
+                    '<div style="background: rgba(76, 175, 80, 0.3); padding: 3px 10px; border-radius: 12px; font-size: 0.75em; color: #4caf50; border: 1px solid #4caf50;">💾 EN CACHE</div>' : 
+                    '<div style="background: rgba(255, 165, 0, 0.3); padding: 3px 10px; border-radius: 12px; font-size: 0.75em; color: #ffa500; border: 1px solid #ffa500;">✨ NOUVELLE</div>';
+                
                 const potentialOdds = currentOdds[pred.prediction];
                 const potentialWin = (betAmount * potentialOdds).toFixed(2);
                 const potentialProfit = (potentialWin - betAmount).toFixed(2);
@@ -949,8 +1029,11 @@
                     <div class="prediction-card" data-ai="${pred.ai}" data-prediction="${pred.prediction}">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid rgba(255, 255, 255, 0.1);">
                             <div style="font-size: 1.3em; font-weight: bold;">${pred.ai}</div>
-                            <div class="confidence-badge ${confidenceClass}">
-                                ${pred.confidence.toFixed(0)}%
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                ${cacheBadge}
+                                <div class="confidence-badge ${confidenceClass}">
+                                    ${pred.confidence.toFixed(0)}%
+                                </div>
                             </div>
                         </div>
                         <div style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 15px 0; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
